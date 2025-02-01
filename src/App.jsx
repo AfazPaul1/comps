@@ -4,11 +4,13 @@ import AccessTimeFilledIcon from '@mui/icons-material/AccessTimeFilled';
 import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
 function App() {
 
-    
+    const handleClick = () => {
+        console.log('clicked');
+    }
 
     return (
         <div>
-            <Button1 primary>
+            <Button1 primary onClick =  {handleClick}>
                 <AddIcon></AddIcon>
                 click me
                 </Button1>
