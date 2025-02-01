@@ -10,7 +10,7 @@ function App() {
 
     return (
         <div>
-            <Button1 primary onClick =  {handleClick}>
+            <Button1 primary onClick={handleClick} className="mb-5">
                 <AddIcon></AddIcon>
                 click me
                 </Button1>
