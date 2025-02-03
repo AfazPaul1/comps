@@ -1,6 +1,6 @@
 import Button from '@mui/material/Button';
 import PropTypes from 'prop-types';
-import './main.css'
+import '../main.css'
 import className from 'classnames'
 
 

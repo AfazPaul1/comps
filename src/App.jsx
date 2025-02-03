@@ -1,31 +1,26 @@
-import Button1 from "./Button";
-import AddIcon from '@mui/icons-material/Add';
-import AccessTimeFilledIcon from '@mui/icons-material/AccessTimeFilled';
-import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
+import Accordion from "./components/Accordion";
+import ButtonPage from "./pages/ButtonPage";
 function App() {
 
-    const handleClick = () => {
-        console.log('clicked');
-    }
+    const items = [
+        {
+            label: 'Can i use react on a project?',
+            content: "yes you can use react on a project. yes you can use react on a project"
+        },
+        {
+            label: 'Can i use js on a project?',
+            content: "yes you can use js on a project. yes you can use react on a project"
+        },
+        {
+            label: 'Can i use vue on a project?',
+            content: "yes you can use vue on a project. yes you can use react on a project"
+        }
+    ]
 
     return (
-        <div>
-            <Button1 primary onClick={handleClick} className="mb-5">
-                <AddIcon></AddIcon>
-                click me
-                </Button1>
-            <Button1 secondary>
-                <AccessTimeFilledIcon></AccessTimeFilledIcon>
-                Buy now
-                </Button1>
-            <Button1 success>
-            <AddCircleOutlineIcon></AddCircleOutlineIcon>
-                see deals
-                </Button1>
-            <Button1 warning outline>hide ads</Button1>
-            <Button1 danger rounded>something</Button1>
-        </div>
-    )
+    
+    <Accordion items = {items}></Accordion>
+)
 }
 
 export default App;
