@@ -15,7 +15,7 @@ function Accordion({ items }) {
             
         return (
                 <div key={index}>
-                    <div>{item.label}</div> 
+                    <div onClick={() => setExpandedIndex(index)}>{item.label}</div> 
                     { content }
                 </div> 
             ) 
