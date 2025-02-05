@@ -9,19 +9,14 @@ function Accordion({ items }) {
 
     const renderedList = items.map((item, index) => {
 
-        // const contentRender = (item) => {
-        //     if (index == expandedIndex) {
-        //     return <div>{item.content}</div>   
-        //     }
-        // }
-
         const isExpanded = index === expandedIndex
+
+        const content = isExpanded && <div>{item.content}</div>
             
         return (
                 <div key={index}>
-                    <div>{item.label}</div>
-                    {/* { isExpanded? <div>{item.content}</div>:<div></div> } */}
-                    { isExpanded? <div>{item.content}</div>:undefined }
+                    <div>{item.label}</div> 
+                    { content }
                 </div> 
             ) 
     })
