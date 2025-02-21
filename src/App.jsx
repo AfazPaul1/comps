@@ -1,26 +1,16 @@
-import Accordion from "./components/Accordion";
-import ButtonPage from "./pages/ButtonPage";
+
+import Dropdown from "./components/Dropdown";
 function App() {
 
-    const items = [
-        {
-            label: 'Can i use react on a project?',
-            content: "yes you can use react on a project. yes you can use react on a project"
-        },
-        {
-            label: 'Can i use js on a project?',
-            content: "yes you can use js on a project. yes you can use react on a project"
-        },
-        {
-            label: 'Can i use vue on a project?',
-            content: "yes you can use vue on a project. yes you can use react on a project"
-        }
+    const options = [
+        {label: 'Red', value: 'red'},
+        {label: 'Green', value: 'green'},
+        {label: 'Blue', value: 'blue'}
     ]
 
     return (
-    
-    <Accordion items = {items}></Accordion>
-)
+        <Dropdown options={options}></Dropdown>
+    )
 }
 
 export default App;
