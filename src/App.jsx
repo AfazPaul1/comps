@@ -2,9 +2,9 @@ import { useState } from "react";
 import Dropdown from "./components/Dropdown";
 function App() {
 
-    const [selected, setSelected] = useState("")
+    const [selected, setSelected] = useState(null)
 
-    const handleItemClick = (option) => {     
+    const handleSelect = (option) => {     
         setSelected(option)
         console.log(selected)
     }
@@ -16,7 +16,7 @@ function App() {
     ]
 
     return (
-        <Dropdown handleChange = {handleItemClick} selected={selected} options={options}></Dropdown>
+        <Dropdown handleSelect = {handleSelect} selected={selected} options={options}></Dropdown>
     )
 }
 

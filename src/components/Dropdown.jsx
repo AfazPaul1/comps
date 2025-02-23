@@ -1,27 +1,27 @@
 import { useState } from 'react';
 import PropTypes from 'prop-types';
 
-function Dropdown({options, handleChange, selected}) {
+function Dropdown({options, handleSelect, selected}) {
 
     const [isOpen, setIsOpen] = useState(false)
-
+ 
     const handleClick = () => {
         setIsOpen(!isOpen)
     }
 
     const handleItemClick = (option) => {
         // console.log(option);
-        handleChange(option)
+        handleSelect(option)
         setIsOpen(false)
     }
 
     const renderedOptions = isOpen && options.map((option) => {
-        return <div onClick={() => handleItemClick(option.value)} key={option.value}>{option.label}</div>
+        return <div onClick={() => handleItemClick(option)} key={option.value}>{option.label}</div>
     })
 
     return (
         <div>
-            <div onClick = {handleClick}>{selected? selected : "Selected.."}</div> 
+            <div onClick = {handleClick}>{selected?.label || "Select.."}</div> 
             <div>{renderedOptions}</div>
         </div>
     )
