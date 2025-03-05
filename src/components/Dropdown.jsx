@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import PropTypes from 'prop-types';
 import '../main.css'
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
@@ -7,13 +7,42 @@ import Panel from './Panel';
 function Dropdown({options, onChange, value}) {
 
     const [isOpen, setIsOpen] = useState(false)
+
+    const divEl = useRef()
+
+    useEffect(() => {
+        const handler = (event) => {
+
+            if (!divEl.current) {
+                return;
+            }
+
+            if (!divEl.current.contains(event.target)) {
+               setIsOpen(false) 
+            }
+            
+        }
+
+        document.addEventListener('click', handler, true)
+
+        return () => {
+            document.removeEventListener('click', handler, true)
+        }
+
+    }, [])
+
+    
+
+    console.log(divEl.current);
+    
  
     const handleClick = () => {
         setIsOpen(!isOpen)
     }
-
+    window.timeTwo = performance.now()
     const handleItemClick = (option) => {
         // console.log(option);
+        window.timeOne = performance.now()
         onChange(option)
         setIsOpen(false)
     }
@@ -23,7 +52,7 @@ function Dropdown({options, onChange, value}) {
     })
 
     return (
-        <div className='w-48 relative'>
+        <div ref={divEl} className='w-48 relative'>
             <Panel 
                 className='flex justify-between items-center cursor-pointer' 
                 onClick = {handleClick}
