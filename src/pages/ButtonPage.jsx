@@ -6,7 +6,7 @@ import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
 function ButtonPage() {
 
     const handleClick = () => {
-        console.log('clicked');
+        
     }
 
     return (

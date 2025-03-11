@@ -35,7 +35,7 @@ function Button1({
     
     return(
         <div>
-            <p className='px-6 bg-black italic shadow-2xs border-red-950 rounded-xs'>hello</p>
+            {/* <p className='px-6 bg-black italic shadow-2xs border-red-950 rounded-xs'>hello</p> */}
             <button {...rest} className={classes}>{children}</button>
         </div>
     )
