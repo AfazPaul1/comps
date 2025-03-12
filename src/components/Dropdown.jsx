@@ -30,12 +30,7 @@ function Dropdown({options, onChange, value}) {
         }
 
     }, [])
-
-    
-
-    console.log(divEl.current);
-    
- 
+     
     const handleClick = () => {
         setIsOpen(!isOpen)
     }
