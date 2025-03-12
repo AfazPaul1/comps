@@ -4,12 +4,19 @@ function Table({data, config}) {
         return <th key={column.label}>{column.label}</th>
     })
 
-    const renderedRows = data.map((item) => {
+    const renderedRows = data.map((rowData) => {
+        const renderedCells = config.map((column ) => {
+            return (
+            <td 
+                key={column.label} 
+                className="p-3" 
+            >
+                {column.render(rowData)}
+            </td>)
+        })
         return (
-            <tr className= "border-b" key={item.name}>
-                <td className="p-3">{config[0].render(item)}</td >
-                <td className="p-3"><div className={`p-3 ${config[1].render(item)}`}></div></td>
-                <td className="p-3">{config[2].render(item)}</td>
+            <tr className= "border-b" key={rowData.name}>
+                {renderedCells}
             </tr>
         )
     })
