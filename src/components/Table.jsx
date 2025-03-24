@@ -1,12 +1,10 @@
-function Echo({children}) {
-    return children
-}
+import { Fragment } from "react"
 
 function Table({data, config, keyFn}) {
 
     const renderedHeaders = config.map((column) => {
         if (column.header) {
-            return <Echo key={column.label}>{column.header()}</Echo>
+            return <Fragment key={column.label}>{column.header()}</Fragment >
         }
         return <th key={column.label}>{column.label}</th>
     })
