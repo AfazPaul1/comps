@@ -14,7 +14,7 @@ function Table({data, config, keyFn}) {
             return (
             <td 
                 key={column.label} 
-                className="p-3" 
+                className="p-3"  
             >
                 {column.render(rowData)}
             </td>)
