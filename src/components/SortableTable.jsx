@@ -1,6 +1,8 @@
 import { useState } from "react";
 import Table from "./Table";
-
+import ArrowDropUpIcon from '@mui/icons-material/ArrowDropUp';
+import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
+import UnfoldMoreSharpIcon from '@mui/icons-material/UnfoldMoreSharp';
 
 function SortableTable(props) {
 
@@ -10,6 +12,13 @@ function SortableTable(props) {
     const { config, data } = props
 
     const handleClick = (label) => {
+
+        if( sortBy && label !== sortBy){
+            setSortOrder('asc')
+            setSortBy(label)
+            return;
+        }
+
         if (sortOrder === null) {
             setSortOrder('asc')
             setSortBy(label)
@@ -30,11 +39,13 @@ function SortableTable(props) {
         else{
             return (
                 {...column, header: () => 
-                <th onClick={() => {
+                <th className="p-0 m-0 align-top cursor-pointer hover:bg-gray-100" onClick={() => {
                     handleClick(column.label)
                 }}>
-                {getIcons(column.label, sortBy, sortOrder)}
-                {column.label} is sortable
+                <div className="flex items-center gap-1 p-0 m-0">
+                    {getIcons(column.label, sortBy, sortOrder)}
+                    {column.label}
+                </div>
                 </th>}
             )
         }
@@ -66,12 +77,25 @@ function SortableTable(props) {
 
 function getIcons(label, sortBy, sortOrder) {
 
+
     if (label !== sortBy) {
-        return 'show both icons'
+        return (
+            <div className="flex flex-col items-center leading-none">
+            <UnfoldMoreSharpIcon />
+            </div>
+        )
     } else if(sortOrder === 'asc') {
-        return 'show up icons'
+        return (
+            <div>
+                <ArrowDropUpIcon />
+            </div>
+        )
     }else if(sortOrder === 'desc') {
-        return 'show down icons'
+        return (
+            <div>
+                <ArrowDropDownIcon />
+            </div>
+        )
     }
     
 }
