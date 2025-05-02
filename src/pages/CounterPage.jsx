@@ -21,8 +21,10 @@ function CounterPage( {initialCounter} ) {
         setCounter(count - 1)
     }
 
-    const add = () => {
+    const add = (event) => {
+        event.preventDefault()
         setCounter(count + incrementBy)
+        setIncrementBy(0)
     }
 
     useEffect(() => {
@@ -34,9 +36,9 @@ function CounterPage( {initialCounter} ) {
             {count}
             <Button1 onClick={increment} primary >Increment</Button1>
             <Button1 onClick={decrement} primary >Deccrement</Button1>
-            <Box sx = {{display: 'flex', alignItems:'center', gap:'2', }}          component="form">
+            <Box onSubmit={add} sx = {{display: 'flex', alignItems:'center', gap:'2', }}          component="form">
                 <TextField onChange={handleChange}  sx={{m:1}} id="outlined-number" label="Add a lot" variant="outlined" type="number" value={incrementBy || ""} />
-                <Button onClick={add}  sx={{m:1}} variant="outlined">ADD</Button>
+                <Button  sx={{m:1}} variant="outlined" type="submit">ADD</Button>
             </Box>
         </div>
     )
