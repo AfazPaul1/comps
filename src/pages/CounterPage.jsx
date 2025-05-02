@@ -1,21 +1,14 @@
-import { useState, useEffect } from "react";
+import useCounter from "../hooks/use-counter";
 import Button1 from "../components/Button";
 
 function CounterPage( {initialCounter} ) {
-    const [counter, setCounter] = useState(initialCounter)
-
-    const handleClick = () => {
-        setCounter(counter + 1)
-    }
-
-    useEffect(() => {
-        console.log(counter);
-    }, [counter])
+    
+    const {increment, counter} = useCounter(initialCounter);
 
     return (
         <div>
             {counter}
-            <Button1 onClick={handleClick} primary >Increment</Button1>
+            <Button1 onClick={increment} primary >Increment</Button1>
         </div>
     )
 }
