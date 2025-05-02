@@ -9,6 +9,8 @@ function CounterPage( {initialCounter} ) {
     const [incrementBy, setIncrementBy] = useState(0)
 
     const handleChange = (event) => {  
+        console.log(Number(event.target.value));
+        
         setIncrementBy(Number(event.target.value))
     }
 
@@ -33,7 +35,7 @@ function CounterPage( {initialCounter} ) {
             <Button1 onClick={increment} primary >Increment</Button1>
             <Button1 onClick={decrement} primary >Deccrement</Button1>
             <Box sx = {{display: 'flex', alignItems:'center', gap:'2', }}          component="form">
-                <TextField onChange={handleChange}  sx={{m:1}} id="outlined-number" label="Add a lot" variant="outlined" type="number" value={incrementBy} />
+                <TextField onChange={handleChange}  sx={{m:1}} id="outlined-number" label="Add a lot" variant="outlined" type="number" value={incrementBy || ""} />
                 <Button onClick={add}  sx={{m:1}} variant="outlined">ADD</Button>
             </Box>
         </div>
