@@ -6,11 +6,9 @@ import Button from '@mui/material/Button';
 import Panel from '../components/Panel'
 function CounterPage( {initialCounter} ) {
     const [count, setCounter] = useState(initialCounter)
-    const [incrementBy, setIncrementBy] = useState()
+    const [incrementBy, setIncrementBy] = useState(0)
 
-    const handleChange = (event) => {
-        console.log(typeof(event.target.value));
-        
+    const handleChange = (event) => {  
         setIncrementBy(Number(event.target.value))
     }
 
