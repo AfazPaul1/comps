@@ -5,19 +5,24 @@ import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import Panel from '../components/Panel'
 
+const INCREMENT_COUNT = 'incrementCount'
+const DECREMENT_COUNT = 'decrementCount'
+const CHANGE_INCREMENT_BY = "changeIncrementBy"
+
+
 const reducer = (state, action) => {
 
-    if(action.type === 'incrementCount')
+    if(action.type === INCREMENT_COUNT)
     return {
         ...state,
         count: state.count+1
     }
-    if(action.type === 'decrementCount')
+    if(action.type === DECREMENT_COUNT)
         return {
             ...state,
             count: state.count-1
         }
-        if(action.type === "changeIncrementBy")
+        if(action.type === CHANGE_INCREMENT_BY)
             return {
                 ...state,
                 count: state.count + state.incrementBy,
@@ -36,7 +41,7 @@ function CounterPage( {initialCount} ) {
     })
     const handleChange = (event) => {  
         dispatch({
-            type: 'changeIncrementBy',
+            type: CHANGE_INCREMENT_BY,
             payload: Number(event.target.value)
         })
         // setIncrementBy(Number(event.target.value))
@@ -45,20 +50,20 @@ function CounterPage( {initialCount} ) {
     const increment = () => {
         // setCounter(count + 1)
         dispatch({
-            type: 'incrementCount'
+            type: INCREMENT_COUNT
         })
     }
     const decrement = () => {
         // setCounter(count - 1)
         dispatch({
-            type: 'decrementCount'
+            type: DECREMENT_COUNT
         })
     }
 
     const add = (event) => {
         event.preventDefault()
         dispatch({
-            type: 'changeIncrementBy',
+            type: CHANGE_INCREMENT_BY,
             payload: 0
         })
         // setCounter(count + incrementBy)
