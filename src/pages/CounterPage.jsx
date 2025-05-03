@@ -4,6 +4,7 @@ import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import Panel from '../components/Panel'
+import { produce } from "immer";
 
 const INCREMENT_COUNT = 'incrementCount'
 const DECREMENT_COUNT = 'decrementCount'
@@ -15,26 +16,18 @@ const reducer = (state, action) => {
 
     switch (action.type) {
         case INCREMENT_COUNT:
-            return {
-                ...state,
-                count: state.count+1
-            }
-        case DECREMENT_COUNT:       
-            return {
-                ...state,
-                count: state.count-1
-            }
+            state.count = state.count+1
+            return;
+        case DECREMENT_COUNT:  
+            state.count =  state.count-1     
+            return;
         case ADD_VALUE_TO_COUNT:
-            return {
-                ...state,
-                count: state.count + state.incrementBy,
-                incrementBy: 0
-            }
+            state.count = state.count + state.incrementBy,
+            state.incrementBy = 0
+            return;
         case SET_INCREMENT_BY:
-            return {
-                ...state,
-                incrementBy: action.payload
-            }
+            state.incrementBy = action.payload
+            return;
         default:
             throw new Error('unexpected action type:' + action.type)
     }
@@ -44,7 +37,7 @@ function CounterPage( {initialCount} ) {
     // const [count, setCounter] = useState(initialCounter)
     // const [incrementBy, setIncrementBy] = useState(0)
 
-    const [state, dispatch] = useReducer(reducer, {
+    const [state, dispatch] = useReducer(produce(reducer), {
         count: initialCount,
         incrementBy:0
     })
