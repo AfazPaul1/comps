@@ -7,28 +7,37 @@ import Panel from '../components/Panel'
 
 const INCREMENT_COUNT = 'incrementCount'
 const DECREMENT_COUNT = 'decrementCount'
-const CHANGE_INCREMENT_BY = "changeIncrementBy"
+const SET_INCREMENT_BY = "changeIncrementBy"
+const ADD_VALUE_TO_COUNT = "addValueToCount"
 
 
 const reducer = (state, action) => {
 
-    if(action.type === INCREMENT_COUNT)
-    return {
-        ...state,
-        count: state.count+1
-    }
-    if(action.type === DECREMENT_COUNT)
-        return {
-            ...state,
-            count: state.count-1
-        }
-        if(action.type === CHANGE_INCREMENT_BY)
+    switch (action.type) {
+        case INCREMENT_COUNT:
+            return {
+                ...state,
+                count: state.count+1
+            }
+        case DECREMENT_COUNT:       
+            return {
+                ...state,
+                count: state.count-1
+            }
+        case ADD_VALUE_TO_COUNT:
             return {
                 ...state,
                 count: state.count + state.incrementBy,
+                incrementBy: 0
+            }
+        case SET_INCREMENT_BY:
+            return {
+                ...state,
                 incrementBy: action.payload
             }
-    return state;
+        default:
+            throw new Error('unexpected action type:' + action.type)
+    }
 }
 
 function CounterPage( {initialCount} ) {
@@ -39,9 +48,10 @@ function CounterPage( {initialCount} ) {
         count: initialCount,
         incrementBy:0
     })
+    
     const handleChange = (event) => {  
         dispatch({
-            type: CHANGE_INCREMENT_BY,
+            type: SET_INCREMENT_BY,
             payload: Number(event.target.value)
         })
         // setIncrementBy(Number(event.target.value))
@@ -63,8 +73,7 @@ function CounterPage( {initialCount} ) {
     const add = (event) => {
         event.preventDefault()
         dispatch({
-            type: CHANGE_INCREMENT_BY,
-            payload: 0
+            type: ADD_VALUE_TO_COUNT,
         })
         // setCounter(count + incrementBy)
         // setIncrementBy(0)
