@@ -1,3 +1,4 @@
+import { create } from "@mui/material/styles/createTransitions";
 import { configureStore, createSlice } from "@reduxjs/toolkit";
 
 const songSlice = createSlice({
@@ -17,21 +18,24 @@ const songSlice = createSlice({
 const store = configureStore({
   reducer: {
     songs: songSlice.reducer,
+    movies: movieSlice.reducer
   },
 });
 
-// const startingState = store.getState()
-// console.log(JSON.stringify(startingState))
+const movieSlice = createSlice({
+    name: "movie",
+    initialState:[],
+    reducers: {
+        addMovie: (state, action) => {
+            state.push(action.payload)
+        },
+        removeMovie: (state, action) => {
+            const index = state.indexOf(action.payload)
+            state.splice(index, 1)
+        }
+    }
 
-// store.dispatch({
-//      type:'song/addSong',
-//      payload: 'new song'
-//  })
-
-// console.log(store)
-
-// const finalState = store.getState()
-// console.log(JSON.stringify(finalState))
+})
 
 export { store };
-export const { addSong, removeSong } = songSlice.actions;
+
