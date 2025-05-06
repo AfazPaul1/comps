@@ -18,7 +18,7 @@ function PlaylistPage () {
     return () => {
       document.head.removeChild(link); // Clean up when navigating away
     };
-  }, []);
+  }, []);  
 
   const handleClick = () => {
     dispatch(reset())
